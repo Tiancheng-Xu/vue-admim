@@ -1,12 +1,11 @@
 <template>
-  <div>头部</div>
+  <div id="header-wrap">头部</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
 <style lang="scss" scoped>
 @import "@/styles/config.scss";
 #header-wrap {

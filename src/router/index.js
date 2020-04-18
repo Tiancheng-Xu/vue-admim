@@ -2,25 +2,44 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
+import Layout from "@/views/Layout";
+
 const routes = [
   {
     path: "/",
-    redirect: "login"
+    redirect: "login",
+    hidden: true,
+    meata: {
+      name: "主页"
+    }
   },
   {
     path: "/login",
     name: "Login",
+    hidden: true,
+    meta: { name: "登录" },
     component: () => import("../views/Login/index.vue")
   },
   {
     path: "/console",
     name: "Console",
-    component: () => import("../views/Console/index.vue")
-  },
-  {
-    path: "/layout",
-    name: "Layout",
-    component: () => import("../views/Layout/index.vue")
+    redirect: "index",
+    meta: {
+      name: "控制台",
+      icon: "console"
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/index",
+        name: "Index",
+        meta: {
+          keepAlive: true,
+          name: "首页"
+        },
+        component: () => import("../views/Console/index.vue")
+      }
+    ]
   }
 ];
 
