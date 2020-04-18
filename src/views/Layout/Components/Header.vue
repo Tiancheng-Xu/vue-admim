@@ -1,9 +1,31 @@
 <template>
-  <div id="header-wrap">头部</div>
+  <div id="header-wrap">
+    <div class="pull-left header-icon" @click="navMenuState">
+      <svg-icon iconClass="menu" className="menu"></svg-icon>
+    </div>
+    <div class="pull-right header-icon">
+      <div class="user-info pull-left">
+        管理员
+      </div>
+      <div class="header-icon">
+        <svg-icon iconClass="exit" className="exit"></svg-icon>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "layoutHeader",
+  setup(props, { root }) {
+    const navMenuState = () => {
+      root.$store.commit("SET_COLLAPSE");
+    };
+    return {
+      navMenuState
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -43,6 +65,7 @@ export default {};
   border-right: 1px solid #ededed;
   + .header-icon {
     padding: 0 28px;
+    display: inline-block;
   }
   img {
     display: inline-block;

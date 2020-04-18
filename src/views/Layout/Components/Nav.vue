@@ -1,8 +1,8 @@
 <template>
   <div id="nav-wrap">
-    <h1 class="logo"><img src="@/assets/logo.png" alt="" /></h1>
+    <h1 class="logo"><img src="@//assets/logo.png" alt="" /></h1>
+
     <el-menu
-      class="el-menu-vertical-demo"
       :collapse="isCollapse"
       background-color="transparent"
       text-color="#fff"
@@ -31,47 +31,33 @@
     </el-menu>
   </div>
 </template>
-
 <script>
-import {
-  reactive,
-  ref,
-  isRef,
-  toRefs,
-  onMounted,
-  watch
-} from "@vue/composition-api";
+import { reactive, computed } from "@vue/composition-api";
 export default {
+  // compiler
   name: "navMenu",
   setup(props, { root }) {
     /**
      * data 数据
      */
-    const isCollapse = ref(true);
-    const routers = reactive(root.$router.options.routes);
-    const handleOpen = (key, keyPath) => {
-      console.log(key, keyPath);
-    };
 
-    const handleClose = (key, keyPath) => {
-      console.log(key, keyPath);
-    };
+    const routers = reactive(root.$router.options.routes);
     /**
      * computed 监听
      */
+    const isCollapse = computed(() => {
+      return root.$store.state.app.isCollapace;
+    });
 
     return {
-      isCollapse,
       routers,
-      handleOpen,
-      handleClose
+      isCollapse
     };
   }
 };
 </script>
-
 <style lang="scss" scoped>
-@import "@/styles/config.scss";
+@import "../../../styles/config.scss";
 .logo {
   text-align: center;
   img {
@@ -84,7 +70,6 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: $navMenu;
   height: 100vh;
   background-color: #344a5f;
   @include webkit(transition, all 0.3s ease 0s);

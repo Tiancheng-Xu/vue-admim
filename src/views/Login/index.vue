@@ -299,13 +299,21 @@ export default {
         code: ruleForm.code,
         module: model.value
       };
-      Login(requestData)
+      root.$store
+        .dispatch("app/login", requestData)
         .then(response => {
           root.$router.push({
             name: "Console"
           });
         })
         .catch(error => {});
+      // Login(requestData)
+      //   .then(response => {
+      //     root.$router.push({
+      //       name: "Console"
+      //     });
+      //   })
+      //   .catch(error => {});
     };
     /**
      * 注册

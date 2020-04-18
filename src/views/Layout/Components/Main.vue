@@ -1,5 +1,8 @@
 <template>
   <div id="main-wrap">
+    <div class="main-content">
+      <div class="content"></div>
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -12,14 +15,14 @@ export default {};
 @import "@/styles/config.scss";
 #main-wrap {
   height: 100vh;
-  position: fixed;
-  left: $navMenu;
-  top: 75px;
-  right: 0;
-  bottom: 0;
-  border: 30px solid #f7f7f7;
-  border-bottom: none;
-  -webkit-box-sizing: border;
+  // position: fixed;
+  // left: $navMenu;
+  // top: 75px;
+  // right: 0;
+  // bottom: 0;
+  // border: 30px solid #f7f7f7;
+  // border-bottom: none;
+  // -webkit-box-sizing: border;
 }
 .main-content {
   width: 100%;
