@@ -1,35 +1,29 @@
-const state = {
-    isCollapse: JSON.parse(sessionStorage.getItem('isCollapse')) || false
-}
+import { Login } from "@/api/login";
+const state = {};
 
-const getters = {
-    isCollapse: state => state.isCollapse
-}
+const getters = {};
 
-const mutations = {  // 必须的  同步 没有回调处理事情
-    SET_COLLAPSE(state) {
-        state.isCollapse = !state.isCollapse;
-        // html5本地储存
-        sessionStorage.setItem('isCollapse', JSON.stringify(state.isCollapse));
-    }
-}
+const mutations = {};
 
-const actions = {  // 可以回调处理事情 
-    login(content, repuestData) {
-        return new Promise((resolve, reject) => {
-            Login(repuestData).then((response) => {
-                resolve(response)
-            }).catch(error => {
-                reject(error)
-            })
+const actions = {
+  // 可以回调处理事情
+  login(content, repuestData) {
+    return new Promise((resolve, reject) => {
+      Login(repuestData)
+        .then(response => {
+          resolve(response);
         })
-    }
-}
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
+};
 
 export default {
-    namespaced: true,
-    state,
-    getters,
-    mutations,
-    actions
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
 };
